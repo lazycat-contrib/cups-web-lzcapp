@@ -28,11 +28,10 @@ application:
             retryCount: 20
             retryIntervalMs: 300
             observerTimeoutMs: 10000
-
 services:
   cups:
-    # upstream: hanxi/cups-web:v0.2.11
-    image: hanxi/cups-web:v0.2.11
+    # upstream: docker.io/hanxi/cups-web:v0.2.11
+    image: registry.lazycat.cloud/czyt/hanxi/cups-web:ffe0d067afb50fdd
     # CUPS usb backend must run as root (see upstream docker-compose notes)
     user: "0"
     environment:
@@ -44,7 +43,6 @@ services:
       - /lzcapp/var/data:/data
       - /lzcapp/var/uploads:/uploads
       - /lzcapp/var/drivers:/opt/cups-drivers/data
-
 usage: |
   CUPS Web 使用说明：
   1. 打开应用后使用默认账号 admin / admin 登录（登录后请尽快修改密码）。
