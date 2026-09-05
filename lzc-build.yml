@@ -1,0 +1,10 @@
+manifest: ./lzc-manifest.yml
+pkgout: ./dist/
+icon: ./icon.png
+
+# CUPS 需要访问 USB 打印机设备节点、放开 USB 字符设备 cgroup 权限，
+# 并以 root 运行 cupsd / lpadmin / 驱动安装，因此使用 privileged 提权。
+compose_override:
+  services:
+    cups:
+      privileged: true

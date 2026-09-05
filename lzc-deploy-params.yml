@@ -1,0 +1,33 @@
+params:
+  - id: cupsadmin
+    type: string
+    name: CUPS admin username
+    description: Username of the CUPS administrator account used to manage printers and queues.
+    default_value: print
+    optional: false
+
+  - id: cupspassword
+    type: secret
+    name: CUPS admin password
+    description: Password of the CUPS administrator account used to manage printers and queues.
+    default_value: print
+    optional: false
+
+  - id: timezone
+    type: string
+    name: Time zone
+    description: IANA time zone used by CUPS, for example Asia/Shanghai.
+    default_value: Asia/Shanghai
+    optional: false
+
+locales:
+  zh:
+    cupsadmin:
+      name: CUPS 管理员用户名
+      description: 用于管理打印机和打印队列的 CUPS 管理员账号。
+    cupspassword:
+      name: CUPS 管理员密码
+      description: 用于管理打印机和打印队列的 CUPS 管理员密码。
+    timezone:
+      name: 时区
+      description: CUPS 使用的 IANA 时区，例如 Asia/Shanghai。

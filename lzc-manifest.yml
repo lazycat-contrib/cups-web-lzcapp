@@ -1,0 +1,55 @@
+application:
+  subdomain: cups-web
+  public_path:
+    - /
+  usb_accel: true
+  upstreams:
+    - location: /
+      backend: http://cups:8080/
+  ingress:
+    - protocol: tcp
+      port: 631
+      service: cups
+      description: "IPP protocol port, for adding a network printer on phones and computers"
+  injects:
+    - id: login-autofill
+      on: browser
+      when:
+        - /#/login
+      do:
+        - src: builtin://simple-inject-password
+          params:
+            user: admin
+            password: admin
+            userSelector: "input:not([type='password'])"
+            passwordSelector: "input[type='password']"
+            submitSelector: "button[type='submit']"
+            autoSubmit: true
+            retryCount: 20
+            retryIntervalMs: 300
+            observerTimeoutMs: 10000
+
+services:
+  cups:
+    # upstream: hanxi/cups-web:v0.2.11
+    image: hanxi/cups-web:v0.2.11
+    # CUPS usb backend must run as root (see upstream docker-compose notes)
+    user: "0"
+    environment:
+      - "CUPSADMIN={{ .U.cupsadmin }}"
+      - "CUPSPASSWORD={{ .U.cupspassword }}"
+      - "TZ={{ .U.timezone }}"
+    binds:
+      - /lzcapp/var/cups-etc:/etc/cups
+      - /lzcapp/var/data:/data
+      - /lzcapp/var/uploads:/uploads
+      - /lzcapp/var/drivers:/opt/cups-drivers/data
+
+usage: |
+  CUPS Web 使用说明：
+  1. 打开应用后使用默认账号 admin / admin 登录（登录后请尽快修改密码）。
+  2. 插上 USB 打印机后，在应用内「打印机」页面添加打印机并勾选 Share（共享）。
+  3. 浏览器上传文件即可提交打印任务。
+  4. 手机 / 电脑可通过 IPP 协议添加网络打印机，地址为应用详情页的 631 端口地址，
+     例如 ipp://<应用域名>:631/printers/<打印机名>。
+  5. 特殊品牌驱动可在 Web 界面「驱动」页面在线安装，驱动会持久化保存。
