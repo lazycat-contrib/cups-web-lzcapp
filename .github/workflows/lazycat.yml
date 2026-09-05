@@ -12,8 +12,9 @@ jobs:
     with:
       operation: auto
       config: .github/lazycat-action.yml
-    # Official store only. Organization Secrets must authorize this
+    # MiaoMiao private store only. Organization Secrets must authorize this
     # repository; a same-name Repository Secret overrides it.
     secrets:
-      LZC_API_HOST: ${{ secrets.LZC_API_HOST }}
-      LZC_API_TOKEN: ${{ secrets.LZC_API_TOKEN }}
+      APPSTORE_URL: ${{ secrets.APPSTORE_URL }}
+      APPSTORE_TOKEN: ${{ secrets.APPSTORE_TOKEN }}
+      APP_ID: ${{ secrets.APP_ID }}

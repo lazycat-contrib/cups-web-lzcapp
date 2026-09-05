@@ -28,11 +28,11 @@ images:
 
 stores:
   official:
-    enabled: true
+    enabled: false
     continue_if_newer_version: true
-    skip_if_version_exists: true
+    skip_if_version_exists: false
     retry:
       enabled: false
   private:
-    enabled: false
-    skip_if_version_exists: false
+    enabled: true
+    skip_if_version_exists: true
