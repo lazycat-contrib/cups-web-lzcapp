@@ -1,5 +1,5 @@
 package: community.lazycat.app.cups-web
-version: 0.2.13
+version: 0.2.14
 name: CUPS Web
 description: Turn a home USB printer into an always-available network printing service with a web UI
 min_os_version: 1.5.0
