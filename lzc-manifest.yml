@@ -30,8 +30,8 @@ application:
             observerTimeoutMs: 10000
 services:
   cups:
-    # upstream: docker.io/hanxi/cups-web:v0.2.25
-    image: registry.lazycat.cloud/czyt/hanxi/cups-web:41e9ebe37901f83a
+    # upstream: docker.io/hanxi/cups-web:v0.2.26
+    image: registry.lazycat.cloud/czyt/hanxi/cups-web:a830f08678cd0f1a
     # CUPS usb backend must run as root (see upstream docker-compose notes)
     user: "0"
     environment:
